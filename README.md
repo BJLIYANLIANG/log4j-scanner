@@ -1,5 +1,5 @@
 # log4j-scanner
-Log4j 2 (CVE-2021-44228) vulnerability scanner for Windows OS
+Log4j 2 (CVE-2021-44228) vulnerability scanner for Windows OS.
 
 ## Example Usage
 
@@ -9,7 +9,7 @@ Log4j 2 (CVE-2021-44228) vulnerability scanner for Windows OS
 ```
 .\log4j-scanner.exe
 
-Terminal is used to output results, deploy this to machines via RMM and Start/Report from PowerShell or CMD Prompt
+Terminal is used to output results, deploy this to machines via RMM and Start/Report from PowerShell or CMD Prompt.
 ```
 
 ## Build from source
@@ -27,3 +27,6 @@ After finding each avialable drive on the system this will find all .jar files t
 ## Changes?
 
 I'm still in the early stages of learning GO so feel free to create a pull request with any changes!
+
+## Compatibility
+Compatible with Windows Server 2012+, Windows 7-10 and Windows Core.
