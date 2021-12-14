@@ -17,19 +17,19 @@ var (
 
 func main() {
 	run()
-	fmt.Printf("\nFound %v vulnerable files", detectionCount)
 }
 
 func run() ([]string, error) {
 
 	fileList := make([]string, 0)
 
-	partitions, _ := disk.Partitions(false)
+	partitions, _ := disk.Partitions(true)
 	for _, partition := range partitions {
 		fmt.Println("Scanning '" + partition.Mountpoint + "' for CVE-2021-44228 vulnerability")
-		e := filepath.Walk(partition.Mountpoint, func(path string, f os.FileInfo, err error) error {
+		e := filepath.Walk(partition.Mountpoint+"/", func(path string, f os.FileInfo, err error) error {
 			if strings.Contains(path, "log4j-core") {
 				if strings.HasSuffix(path, ".jar") {
+					fmt.Println("[*] Found CVE-2021-44228 vulnerability in " + path)
 					r, err := zip.OpenReader(path)
 					if err != nil {
 						panic(err)
@@ -51,6 +51,8 @@ func run() ([]string, error) {
 			panic(e)
 		}
 	}
+
+	fmt.Printf("\nFound %v vulnerable files\n", detectionCount)
 
 	for _, file := range fileList {
 		fmt.Println(file)
